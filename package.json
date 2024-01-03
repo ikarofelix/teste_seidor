@@ -7,6 +7,8 @@
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js",
     "test": "jest",
+    "test:co": "jest --coverage",
+    "test:watch": "jest --watchAll",
     "build": "babel src --out-dir dist"
   },
   "keywords": [],
@@ -21,6 +23,7 @@
     "@babel/node": "^7.22.19",
     "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.23.7",
+    "dotenv": "^16.3.1",
     "jest": "^29.7.0",
     "nodemon": "^3.0.2",
     "supertest": "^6.3.3"
