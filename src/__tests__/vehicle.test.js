@@ -126,9 +126,8 @@ describe("/vehicle Endpoint", () => {
     expect(res.statusCode).toEqual(200);
     expect(typeof res.body).toBe("object");
   });
-
-  afterAll(done => {
-    server.close(done);
-  });
 });
 
+afterAll(done => {
+  server.close(done);
+});

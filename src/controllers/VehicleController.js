@@ -7,13 +7,13 @@ export function getVehicles(req, res) {
 
   if (cor) {
     filteredVehicles = filteredVehicles.filter(
-      vehicle => vehicle.cor.toLowerCase() === cor.toLowerCase()
+      vehicle => vehicle.cor.toLowerCase().includes(cor.toLowerCase())
     );
   }
 
   if (marca) {
     filteredVehicles = filteredVehicles.filter(
-      vehicle => vehicle.marca.toLowerCase() === marca.toLowerCase()
+      vehicle => vehicle.marca.toLowerCase().includes(marca.toLowerCase())
     );
   }
 
