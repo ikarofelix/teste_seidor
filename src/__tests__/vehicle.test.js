@@ -56,17 +56,6 @@ describe("/vehicle Endpoint", () => {
     expect(res.statusCode).toEqual(404);
   });
 
-  it("should not update deleted vehicle", async () => {
-    const res = await request(server)
-      .put("/vehicle/1")
-      .send({
-        placa: "XYZ-5678",
-        cor: "Red",
-        marca: "Honda"
-      });
-    expect(res.statusCode).toEqual(404);
-  });
-
   it("should create multiple vehicle", async () => {
     const vehicle = [
       { placa: "ABC-1234", cor: "Blue", marca: "Toyota" },
@@ -92,16 +81,34 @@ describe("/vehicle Endpoint", () => {
     }
   });
 
-  it("should recover a vehicle by id", async () => {
+  it("should recover a vehicle by id passing new placa, cor and marca", async () => {
     const res = await request(server)
-      .get("/vehicle/1");
+      .put("/vehicle/1")
+      .send({
+        placa: "ABC-1234",
+        cor: "Blue",
+        marca: "Toyota"
+      });
+    expect(res.statusCode).toEqual(200);
+    expect(typeof res.body).toBe("object");
+  });
+
+  it("should delete a vehicle", async () => {
+    const res = await request(server)
+      .delete("/vehicle/1");
+    expect(res.statusCode).toEqual(204);
+  });
+
+  it("should recover a vehicle by id without passing new placa, cor and marca", async () => {
+    const res = await request(server)
+      .put("/vehicle/1");
     expect(res.statusCode).toEqual(200);
     expect(typeof res.body).toBe("object");
   });
 
   it("should not recover a vehicle by id", async () => {
     const res = await request(server)
-      .get("/vehicle/999");
+      .put("/vehicle/999");
     expect(res.statusCode).toEqual(404);
   });
 
@@ -117,13 +124,20 @@ describe("/vehicle Endpoint", () => {
       .get("/vehicle?cor=red&marca=honda");
     expect(res.statusCode).toEqual(200);
     expect(Array.isArray(res.body)).toBe(true);
-    expect(res.body.length).toEqual(2);
+    expect(res.body.length).toEqual(1);
   });
 
   it("should get a vehicle by id", async () => {
     const res = await request(server)
       .get("/vehicle/1");
     expect(res.statusCode).toEqual(200);
+    expect(typeof res.body).toBe("object");
+  });
+
+  it("should not get a vehicle by id", async () => {
+    const res = await request(server)
+      .get("/vehicle/999");
+    expect(res.statusCode).toEqual(404);
     expect(typeof res.body).toBe("object");
   });
 });

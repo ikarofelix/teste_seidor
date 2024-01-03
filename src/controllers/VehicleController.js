@@ -17,7 +17,7 @@ export function getVehicles(req, res) {
     );
   }
 
-  return res.send(filteredVehicles);
+  return res.json(filteredVehicles);
 }
 
 export function getVehicleById(req, res) {
@@ -25,15 +25,11 @@ export function getVehicleById(req, res) {
 
   const vehicle = vehicleData.find(vehicle => vehicle.id === Number(id));
 
-  if (!vehicle) {
-    return res.status(404).send(`Veículo com id ${id} não encontrado!`);
+  if (!vehicle || vehicle.deleted) {
+    return res.status(404).json({ error: `Veículo com id ${id} não encontrado!` });
   }
 
-  if (vehicle.deleted) {
-    delete vehicle.deleted;
-  }
-
-  return res.send(vehicle);
+  return res.json(vehicle);
 }
 
 export function deleteVehicle(req, res) {
@@ -42,18 +38,20 @@ export function deleteVehicle(req, res) {
   const vehicleIndex = vehicleData.findIndex(vehicle => vehicle.id === Number(id));
 
   if (vehicleIndex < 0) {
-    return res.status(404).send(`Veículo com id ${id} não encontrado!`);
+    return res.status(404).json({ error: `Veículo com id ${id} não encontrado!` });
   }
 
   vehicleData[vehicleIndex].deleted = true;
 
-  return res.status(204).send();
+  return res.status(204).json();
 }
 
 export function createVehicle(req, res) {
   const { placa, cor, marca } = req.body;
   if (!placa || !cor || !marca) {
-    return res.status(400).send(`Veículo inválido! Verifique se os campos placa, cor e marca foram preenchidos corretamente.`);
+    return res.status(400).json({ 
+      error: "Veículo inválido! Verifique se os campos placa, cor e marca foram preenchidos corretamente." 
+    });
   }
 
   const newVehicle = {
@@ -65,7 +63,7 @@ export function createVehicle(req, res) {
 
   vehicleData.push(newVehicle);
 
-  return res.status(201).send(newVehicle);
+  return res.status(201).json(newVehicle);
 }
 
 export function updateVehicle(req, res) {
@@ -74,17 +72,23 @@ export function updateVehicle(req, res) {
 
   const vehicle = vehicleData.find(vehicle => vehicle.id === Number(id));
 
-  if (!vehicle || vehicle.deleted) {
-    return res.status(404).send(`Veículo com id ${id} não encontrado!`);
+  if (!vehicle) {
+    return res.status(404).json({ error: `Veículo com id ${id} não encontrado!` });
   }
 
-  if (!placa || !cor || !marca) {
-    return res.status(400).send(`Veículo inválido! Verifique se os campos placa, cor e marca foram preenchidos corretamente.`);
+  if ((!placa || !cor || !marca) && !vehicle.deleted) {
+    return res.status(400).json({ 
+      error: "Veículo inválido! Verifique se os campos placa, cor e marca foram preenchidos corretamente." 
+    });
   }
 
-  vehicle.placa = placa;
-  vehicle.cor = cor;
-  vehicle.marca = marca;
+  if (vehicle.deleted) {
+    delete vehicle.deleted;
+  }
 
-  return res.send(vehicle);
+  vehicle.placa = placa || vehicle.placa;
+  vehicle.cor = cor || vehicle.cor;
+  vehicle.marca = marca || vehicle.marca;
+
+  return res.json(vehicle);
 }
