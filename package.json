@@ -6,9 +6,9 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js",
-    "test": "jest",
-    "test:co": "jest --coverage",
-    "test:watch": "jest --watchAll",
+    "test": "jest -i",
+    "test:co": "jest --coverage -i",
+    "test:watch": "jest --watchAll -i",
     "build": "babel src --out-dir dist"
   },
   "keywords": [],
