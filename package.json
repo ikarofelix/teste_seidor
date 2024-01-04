@@ -19,9 +19,7 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.23.4",
-    "@babel/core": "^7.23.7",
     "@babel/node": "^7.22.19",
-    "@babel/polyfill": "^7.12.1",
     "@babel/preset-env": "^7.23.7",
     "dotenv": "^16.3.1",
     "jest": "^29.7.0",
