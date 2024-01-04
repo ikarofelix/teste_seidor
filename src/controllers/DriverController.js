@@ -44,7 +44,7 @@ export function createDriver(req, res) {
   const { nome } = req.body;
   if (!nome) {
     return res.status(400).json({ 
-      error: "Motorista inválido! Verifique se os campo nome foi preenchido corretamente." 
+      error: "Motorista inválido! Verifique se o campo nome foi preenchido corretamente." 
     });
   }
 
