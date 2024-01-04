@@ -29,7 +29,7 @@ Coverage dos testes performados - 100%
     - `PUT /driver/${id}`: Atualizar motorista pelo id. Este endpoint precisa receber um JSON com o campo "nome" contendo o novo nome que o motorista com o id indicado receberá no caso de atualização, caso seja para restaurar, o campo "nome" se torna opcional
     - `DELETE /driver/${id}`: Deletar motorista pelo id
   
-  *O ENDPOINT `PUT` TAMBÉM É RESPONSÁVEL POR RESTAURAR UM MOTORISTA DELETADO. DE ACORDO COM O PROJETO NA LINHA: `Recuperar um motorista cadastrado pelo seu identificador único` O ENTENDIMENTO A PARTIR DISSO FOI QUE AO DELETAR UM ITEM ELE NÃO SERIA DELETADO DE FATO, PODENDO ASSIM SER RECUPERADO POSTERIORMENTE, COMO ACONTECE NA MAIORIA DAS EMPRESAS. PORTANTO, O ENDPOINT PARA RECUPERAR O MOTORISTA DELETADO É O `PUT` PASSANDO O `ID` UMA VEZ DELETADO, TRAZENDO ELE DE VOLTA COMO ATIVO*
+  *O ENDPOINT `PUT /driver/${id}` TAMBÉM É RESPONSÁVEL POR RESTAURAR UM MOTORISTA DELETADO. DE ACORDO COM O PROJETO NA LINHA: `Recuperar um motorista cadastrado pelo seu identificador único` O ENTENDIMENTO A PARTIR DISSO FOI QUE AO DELETAR UM ITEM ELE NÃO SERIA DELETADO DE FATO, PODENDO ASSIM SER RECUPERADO POSTERIORMENTE, COMO ACONTECE NA MAIORIA DAS EMPRESAS. PORTANTO, O ENDPOINT PARA RECUPERAR O MOTORISTA DELETADO É O `PUT` PASSANDO O `ID` UMA VEZ DELETADO, TRAZENDO ELE DE VOLTA COMO ATIVO*
 
   - ## Veículos
 
@@ -42,7 +42,7 @@ Coverage dos testes performados - 100%
     - `PUT /vehicle/${id}`: Atualizar veículo pelo id. Este endpoint precisa receber um JSON com os campos "placa", "cor" e "marca" contendo os novos valores que o veículo com o id indicado receberá no caso de atualização, caso seja para restaurar, os campos "placa", "cor" e "marca" se tornam opcionais
     - `DELETE /vehicle/${id}`: Deletar veículo pelo id
   
-  *O ENDPOINT `PUT` TAMBÉM É RESPONSÁVEL POR RESTAURAR UM VEÍCULO DELETADO. DE ACORDO COM O PROJETO NA LINHA: `Recuperar um veículo cadastrado pelo seu identificador único` O ENTENDIMENTO A PARTIR DISSO FOI QUE AO DELETAR UM ITEM ELE NÃO SERIA DELETADO DE FATO, PODENDO ASSIM SER RECUPERADO POSTERIORMENTE, COMO ACONTECE NA MAIORIA DAS EMPRESAS. PORTANTO, O ENDPOINT PARA RECUPERAR O VEÍCULO DELETADO É O `PUT` PASSANDO O `ID` UMA VEZ DELETADO, TRAZENDO ELE DE VOLTA COMO ATIVO*
+  *O ENDPOINT `PUT /vehicle/${id}` TAMBÉM É RESPONSÁVEL POR RESTAURAR UM VEÍCULO DELETADO. DE ACORDO COM O PROJETO NA LINHA: `Recuperar um veículo cadastrado pelo seu identificador único` O ENTENDIMENTO A PARTIR DISSO FOI QUE AO DELETAR UM ITEM ELE NÃO SERIA DELETADO DE FATO, PODENDO ASSIM SER RECUPERADO POSTERIORMENTE, COMO ACONTECE NA MAIORIA DAS EMPRESAS. PORTANTO, O ENDPOINT PARA RECUPERAR O VEÍCULO DELETADO É O `PUT` PASSANDO O `ID` UMA VEZ DELETADO, TRAZENDO ELE DE VOLTA COMO ATIVO*
 
   - ## Utilização de um automóvel
 
